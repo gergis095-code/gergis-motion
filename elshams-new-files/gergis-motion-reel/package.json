@@ -1,0 +1,32 @@
+{
+  "name": "gergis-motion-reel",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "voiceover": "python3 voiceover/make_voiceover.py",
+    "estimate": "python3 voiceover/estimate_timings.py",
+    "studio": "remotion studio src/index.ts",
+    "render": "remotion render src/index.ts GergisMotionIntro out/gergis-motion-intro.mp4",
+    "typecheck": "tsc",
+    "music": "python3 voiceover/make_music.py"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "private": "true",
+  "type": "module",
+  "dependencies": {
+    "@fontsource/cormorant-garamond": "^5.3.0",
+    "@fontsource/manrope": "^5.3.0",
+    "@remotion/cli": "^4.0.532",
+    "@remotion/fonts": "^4.0.532",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "remotion": "^4.0.532"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.31",
+    "typescript": "^7.0.2"
+  }
+}
