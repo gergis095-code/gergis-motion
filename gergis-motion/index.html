@@ -8,6 +8,7 @@
 <meta name="theme-color" content="#0B0A08">
 <meta name="color-scheme" content="dark">
 <link rel="canonical" href="https://elshams.org/gergis-motion/">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://elshams.org/gergis-motion/">
@@ -86,6 +87,8 @@ body::after{
 }
 @keyframes grain{0%{transform:translate(0,0)}20%{transform:translate(-3%,2%)}40%{transform:translate(2%,-4%)}60%{transform:translate(-4%,-2%)}80%{transform:translate(3%,3%)}100%{transform:translate(0,0)}}
 
+.skip{position:fixed;left:16px;top:-80px;z-index:10001;padding:12px 18px;border-radius:10px;background:var(--gold);color:#1a140a;font-weight:700;font-size:14px;transition:top .3s}
+.skip:focus{top:16px}
 .wrap{width:100%;max-width:var(--max);margin:0 auto;padding:0 var(--gutter)}
 .serif{font-family:var(--serif)}
 .gold{color:var(--gold)}
@@ -193,6 +196,7 @@ body::after{
 .mobile-menu a:hover{color:var(--gold)}
 .menu-open .mobile-menu a{transform:none;opacity:1}
 .mobile-menu .mm-foot{margin-top:40px;color:var(--muted);font-size:14px}
+.mobile-menu .mm-foot a{display:inline;font-family:var(--sans);font-size:14px;line-height:1.6;color:var(--gold);transform:none;opacity:1}
 
 /* ============ HERO ============ */
 .hero{position:relative;min-height:100svh;display:flex;align-items:center;overflow:hidden;padding:140px 0 110px}
@@ -752,6 +756,8 @@ select.input option{background:#16130e;color:var(--ivory)}
 .wa-float.show:hover{transform:scale(1.08) rotate(-6deg)}
 .clip.tiny{color:transparent}
 
+@media (hover:none){ .card-media .scroll-hint{display:none} }
+
 /* ============ RESPONSIVE ============ */
 @media (max-width:1280px){
   .nav-links,.nav .btn{display:none}
@@ -815,7 +821,17 @@ select.input option{background:#16130e;color:var(--ivory)}
 </style>
 <noscript><style>.loader{display:none}[data-reveal],.fade-up,.hero-title .ch,.split-words .w>span{opacity:1!important;transform:none!important;clip-path:none!important}body{overflow:auto}</style></noscript>
 </head>
-<body class="loading">
+<body>
+<script>
+  // lock scrolling only while the intro plays; release it no matter what after 4s
+  document.body.classList.add("loading");
+  setTimeout(function () {
+    document.body.classList.remove("loading");
+    var l = document.getElementById("loader");
+    if (l) l.classList.add("done");
+    ["heroTitle", "hero"].forEach(function (id) { var e = document.getElementById(id); if (e) e.classList.add("in"); });
+  }, 4000);
+</script>
 
 <!-- Loader -->
 <div class="loader" id="loader" aria-hidden="true">
@@ -827,6 +843,7 @@ select.input option{background:#16130e;color:var(--ivory)}
   </div>
 </div>
 
+<a class="skip" href="#about">Skip to content</a>
 <div class="cursor" id="cursor"><span>View</span></div>
 <div class="cursor-dot" id="cursorDot"></div>
 <div class="progress" aria-hidden="true"><span id="progress"></span></div>
@@ -861,7 +878,7 @@ select.input option{background:#16130e;color:var(--ivory)}
   <a href="#process"><small>05</small>Process</a>
   <a href="#about"><small>06</small>About</a>
   <a href="#contact"><small>07</small>Contact</a>
-  <div class="mm-foot">Gergis Motion · <a class="js-wa" href="#" target="_blank" rel="noopener"><span class="js-phone"></span></a><br><span class="js-email"></span></div>
+  <div class="mm-foot">Gergis Motion · <a class="js-wa" href="https://wa.me/201222599826?text=Hi%20Gergis%2C%20I%27d%20like%20to%20talk%20about%20a%20project." target="_blank" rel="noopener"><span class="js-phone">+20 122 259 9826</span></a><br><span class="js-email">gergiseditor@gmail.com</span></div>
 </div>
 
 <main id="top">
@@ -912,7 +929,7 @@ select.input option{background:#16130e;color:var(--ivory)}
   <div class="wrap about-grid">
     <div>
       <div class="eyebrow" data-reveal>About the studio</div>
-      <p class="about-quote split-words" data-reveal style="margin-top:28px">Editing, motion and code, <em>all from one person</em>, so nothing gets lost between the cut and the launch.</p>
+      <h2 class="about-quote split-words" data-reveal style="margin-top:28px">Editing, motion and code, <em>all from one person</em>, so nothing gets lost between the cut and the launch.</h2>
       <div class="about-id" data-reveal>
         <div><b>Gergis Shawky</b><span>Founder, Gergis Motion</span></div>
         <span class="status">Booking now</span>
@@ -925,10 +942,10 @@ select.input option{background:#16130e;color:var(--ivory)}
       <p data-reveal>Every cut is timed to the music, every title is animated by hand, and every website is written line by line, with no templates or page builders.</p>
       <div class="sig" data-reveal>Gergis Shawky</div>
       <div class="stats" data-reveal>
-        <div class="stat"><b data-count="3">0</b><span>Disciplines, one studio</span></div>
-        <div class="stat"><b><span data-count="10">0</span><sup>+</sup></b><span>Pages built for El Shams</span></div>
-        <div class="stat"><b data-count="2">0</b><span>Languages, English &amp; Arabic</span></div>
-        <div class="stat"><b><span data-count="100">0</span><sup>%</sup></b><span>Custom made, no templates</span></div>
+        <div class="stat"><b data-count="3">3</b><span>Disciplines, one studio</span></div>
+        <div class="stat"><b><span data-count="10">10</span><sup>+</sup></b><span>Pages built for El Shams</span></div>
+        <div class="stat"><b data-count="2">2</b><span>Languages, English &amp; Arabic</span></div>
+        <div class="stat"><b><span data-count="100">100</span><sup>%</sup></b><span>Custom made, no templates</span></div>
       </div>
     </div>
   </div>
@@ -1021,78 +1038,80 @@ select.input option{background:#16130e;color:var(--ivory)}
         <div class="eyebrow" data-reveal>Inside the edit</div>
         <h2 class="h2 split-words" data-reveal style="margin-top:22px">The edit,<br><em>frame by frame.</em></h2>
       </div>
-      <p class="lead" data-reveal>The real timeline of my BMW Sunset Drift edit: every cut, title and sound effect where it sits in the project. Press play, or drag the playhead to scrub.</p>
+      <p class="lead" data-reveal>The real timeline of my El Shams motion graphics video: every animated scene, transition and sound where it sits in the project. Press play, or drag the playhead to scrub.</p>
     </div>
     <div class="nle" data-reveal id="nle">
       <div class="nle-top">
         <div class="dots"><i></i><i></i><i></i></div>
-        <div class="nle-file">GM_BMW_Sunset_Drift_v7.prproj · Sequence 01 · 1920×1080 · 60p</div>
+        <div class="nle-file">GM_ElShams_Motion_v7.prproj · Sequence 01 · 1920×1080 · 30p</div>
         <span class="status" style="color:var(--gold)">Final cut</span>
       </div>
       <div class="nle-body">
         <div class="nle-panel">
           <h4>Project bin</h4>
           <div class="bin" id="bin">
-            <button data-t="1"><img src="videos/bin-sideways-title.webp" alt=""><span>SIDEWAYS_Title</span></button>
-            <button data-t="3"><img src="videos/bin-pan-sunset.webp" alt=""><span>Pan_Sunset</span></button>
-            <button data-t="8.5"><img src="videos/bin-smoke-rear.webp" alt=""><span>Smoke_Rear</span></button>
-            <button data-t="13.5"><img src="videos/bin-smoke-show.webp" alt=""><span>SMOKE_SHOW</span></button>
-            <button data-t="22.5"><img src="videos/bin-send-it.webp" alt=""><span>SEND_IT</span></button>
-            <button data-t="26.5"><img src="videos/bin-max-angle.webp" alt=""><span>MAX_ANGLE</span></button>
+            <button data-t="3.9"><img src="videos/es-bin-logo.webp" alt=""><span>ES_Logo_Reveal</span></button>
+            <button data-t="8.8"><img src="videos/es-bin-years.webp" alt=""><span>Years_Counter</span></button>
+            <button data-t="12.6"><img src="videos/es-bin-dyeing.webp" alt=""><span>Dyeing_Card</span></button>
+            <button data-t="22.8"><img src="videos/es-bin-volume.webp" alt=""><span>Volume_Stats</span></button>
+            <button data-t="28.9"><img src="videos/es-bin-stages.webp" alt=""><span>Six_Stages</span></button>
+            <button data-t="32.6"><img src="videos/es-bin-iso.webp" alt=""><span>ISO_Badges</span></button>
           </div>
           <h4>Lumetri scopes</h4>
           <div class="scopes"><canvas id="scopes"></canvas></div>
         </div>
         <div class="monitor" id="monitor">
-          <span class="mon-label">Program · BMW Sunset Drift</span>
-          <video id="monVideo" muted loop playsinline preload="none" poster="videos/bmw-drift-poster.webp" data-src="videos/bmw-drift-editor.mp4" aria-label="The BMW Sunset Drift edit playing in the editor"></video>
+          <span class="mon-label">Program · El Shams Motion</span>
+          <video id="monVideo" muted loop playsinline preload="none" poster="videos/elshams-motion-poster.webp" data-src="videos/elshams-motion-editor.mp4" aria-label="The El Shams motion graphics video playing in the editor"></video>
           <span class="mon-tc" id="monTc">00:00:00:00</span>
         </div>
       </div>
       <div class="tl" id="timeline">
         <div class="tl-ruler" id="ruler"></div>
         <div class="track"><div class="track-h">V3</div><div class="track-lane">
-          <div class="clip fx" style="left:0.0%;width:5.56%" title="SIDEWAYS.aep">SIDEWAYS.aep</div>
-          <div class="clip fx" style="left:5.56%;width:10.0%" title="BMW_LowerThird.aep">BMW_LowerThird.aep</div>
-          <div class="clip fx" style="left:15.56%;width:5.56%" title="Countdown.aep">Countdown.aep</div>
-          <div class="clip fx" style="left:25.0%;width:5.56%" title="NO_GRIP_Glitch.aep">NO_GRIP_Glitch.aep</div>
-          <div class="clip fx" style="left:35.56%;width:4.44%" title="SMOKE_SHOW.aep">SMOKE_SHOW.aep</div>
-          <div class="clip fx" style="left:41.67%;width:4.44%" title="FULL_LOCK.aep">FULL_LOCK.aep</div>
-          <div class="clip fx" style="left:60.56%;width:4.44%" title="SEND_IT.aep">SEND_IT.aep</div>
-          <div class="clip fx" style="left:71.67%;width:4.44%" title="MAX_ANGLE.aep">MAX_ANGLE.aep</div>
-          <div class="clip fx" style="left:88.33%;width:11.67%" title="SIDEWAYS_Outro.aep">SIDEWAYS_Outro.aep</div>
+          <div class="clip fx" style="left:0.0%;width:14.87%" title="ES_Logo_Reveal.aep">ES_Logo_Reveal.aep</div>
+          <div class="clip fx" style="left:15.38%;width:11.03%" title="Years_Counter.aep">Years_Counter.aep</div>
+          <div class="clip fx" style="left:27.18%;width:8.72%" title="Dyeing_Card.aep">Dyeing_Card.aep</div>
+          <div class="clip fx" style="left:35.9%;width:6.92%" title="Printing_Card.aep">Printing_Card.aep</div>
+          <div class="clip fx" style="left:45.13%;width:7.18%" title="Finishing_Card.aep">Finishing_Card.aep</div>
+          <div class="clip fx" style="left:52.82%;width:10.0%" title="Volume_Stats.aep">Volume_Stats.aep</div>
+          <div class="clip fx" style="left:65.13%;width:11.03%" title="Six_Stages.aep">Six_Stages.aep</div>
+          <div class="clip fx" style="left:76.41%;width:10.0%" title="ISO_Badges.aep">ISO_Badges.aep</div>
+          <div class="clip fx" style="left:86.67%;width:13.33%" title="End_Card.aep">End_Card.aep</div>
         </div></div>
         <div class="track"><div class="track-h">V2</div><div class="track-lane">
-          <div class="clip v2" style="left:0.0%;width:76.67%" title="Sunset_Grade.adj">Sunset_Grade.adj</div>
-          <div class="clip v2" style="left:76.67%;width:7.22%" title="REPLAY_Frame">REPLAY_Frame</div>
-          <div class="clip v2" style="left:83.89%;width:3.89%" title="Whip_Blur">Whip_Blur</div>
-          <div class="clip v2" style="left:87.78%;width:12.22%" title="Sunset_Grade.adj">Sunset_Grade.adj</div>
+          <div class="clip v2" style="left:0.0%;width:14.87%" title="Color_Waves.aep">Color_Waves.aep</div>
+          <div class="clip v2" style="left:26.15%;width:1.54%" title="Wipe_Cream">Wipe_Cream</div>
+          <div class="clip v2" style="left:42.82%;width:2.31%" title="Wipe_Navy">Wipe_Navy</div>
+          <div class="clip v2" style="left:49.74%;width:3.08%" title="Wipe_Gold">Wipe_Gold</div>
+          <div class="clip v2" style="left:62.56%;width:2.56%" title="Wipe_Cream">Wipe_Cream</div>
+          <div class="clip v2" style="left:86.67%;width:13.33%" title="Color_Waves.aep">Color_Waves.aep</div>
         </div></div>
         <div class="track"><div class="track-h">V1</div><div class="track-lane">
-          <div class="clip v" style="left:0.0%;width:5.56%" title="Slide_Rear">Slide_Rear</div>
-          <div class="clip v" style="left:5.56%;width:11.11%" title="Pan_Sunset">Pan_Sunset</div>
-          <div class="clip v" style="left:16.67%;width:5.56%" title="Approach_Front">Approach_Front</div>
-          <div class="clip v" style="left:22.22%;width:8.33%" title="Smoke_Rear">Smoke_Rear</div>
-          <div class="clip v" style="left:30.56%;width:5.56%" title="Side_0.55x">Side_0.55x</div>
-          <div class="clip v" style="left:36.11%;width:5.56%" title="Smoke_Front">Smoke_Front</div>
-          <div class="clip v" style="left:41.67%;width:8.33%" title="Full_Lock_Side">Full_Lock_Side</div>
-          <div class="clip v" style="left:50.0%;width:2.78%" title="Blur_Pass">Blur_Pass</div>
-          <div class="clip v" style="left:52.78%;width:2.78%" title="Rear_Plate">Rear_Plate</div>
-          <div class="clip v" style="left:55.56%;width:16.67%" title="Smoke_Side_0.38x">Smoke_Side_0.38x</div>
-          <div class="clip v" style="left:72.22%;width:4.44%" title="Max_Angle">Max_Angle</div>
-          <div class="clip v" style="left:76.67%;width:11.11%" title="Replay_Side">Replay_Side</div>
-          <div class="clip v" style="left:87.78%;width:12.22%" title="Outro_Slide">Outro_Slide</div>
+          <div class="clip v" style="left:0.0%;width:15.38%" title="BG_Navy">BG_Navy</div>
+          <div class="clip v" style="left:15.38%;width:11.79%" title="BG_Cream">BG_Cream</div>
+          <div class="clip v" style="left:28.72%;width:7.18%" title="Jet_Dyeing_Machines">Jet_Dyeing_Machines</div>
+          <div class="clip v" style="left:36.41%;width:6.41%" title="Rotary_Printing_Line">Rotary_Printing_Line</div>
+          <div class="clip v" style="left:46.15%;width:6.15%" title="Stenter_Line">Stenter_Line</div>
+          <div class="clip v" style="left:52.56%;width:10.26%" title="BG_Navy">BG_Navy</div>
+          <div class="clip v" style="left:62.82%;width:13.33%" title="BG_Cream">BG_Cream</div>
+          <div class="clip v" style="left:76.15%;width:10.26%" title="BG_Teal">BG_Teal</div>
+          <div class="clip v" style="left:86.41%;width:13.59%" title="BG_Navy">BG_Navy</div>
         </div></div>
         <div class="track"><div class="track-h">A1</div><div class="track-lane">
-          <div class="clip a" style="left:0.0%;width:100.0%" title="Drift_Score_Master.wav">Drift_Score_Master.wav</div>
+          <div class="clip a" style="left:0.0%;width:100.0%" title="Score_Master.wav">Score_Master.wav</div>
         </div></div>
         <div class="track"><div class="track-h">A2</div><div class="track-lane">
-          <div class="clip a2" style="left:0.0%;width:6.94%" title="Engine_Rev">Engine_Rev</div>
-          <div class="clip a2" style="left:23.61%;width:6.94%" title="Tire_Screech">Tire_Screech</div>
-          <div class="clip a2" style="left:36.11%;width:2.78%" title="Bass_Hit">Bass_Hit</div>
-          <div class="clip a2" style="left:52.78%;width:11.11%" title="Screech_Long">Screech_Long</div>
-          <div class="clip a2" style="left:83.33%;width:4.17%" title="Whoosh">Whoosh</div>
-          <div class="clip a2" style="left:88.89%;width:11.11%" title="Boom_Tail">Boom_Tail</div>
+          <div class="clip a2" style="left:0.0%;width:3.08%" title="Riser">Riser</div>
+          <div class="clip a2" style="left:6.15%;width:2.05%" title="Logo_Hit">Logo_Hit</div>
+          <div class="clip a2" style="left:16.67%;width:7.69%" title="Counter_Ticks">Counter_Ticks</div>
+          <div class="clip a2" style="left:26.15%;width:1.54%" title="Whoosh">Whoosh</div>
+          <div class="clip a2" style="left:42.82%;width:1.79%" title="Whoosh">Whoosh</div>
+          <div class="clip a2" style="left:49.74%;width:2.05%" title="Whoosh">Whoosh</div>
+          <div class="clip a2" style="left:53.85%;width:6.41%" title="Number_Pops">Number_Pops</div>
+          <div class="clip a2" style="left:62.56%;width:1.54%" title="Whoosh">Whoosh</div>
+          <div class="clip a2" style="left:78.21%;width:2.56%" title="Chime">Chime</div>
+          <div class="clip a2" style="left:87.18%;width:2.56%" title="Logo_Hit">Logo_Hit</div>
         </div></div>
         <div class="playhead" id="playhead"></div>
       </div>
@@ -1102,7 +1121,7 @@ select.input option{background:#16130e;color:var(--ivory)}
           <button id="tlPlay" aria-label="Pause"><svg id="tlPlayIcon" viewBox="0 0 16 16" fill="currentColor"><path d="M4 2h3v12H4zM9 2h3v12H9z"/></svg></button>
         </div>
         <span class="nle-hint">Drag the playhead to scrub</span>
-        <span id="tlTc" style="font-variant-numeric:tabular-nums;color:var(--gold)">00:00:00:00 / 00:00:36:00</span>
+        <span id="tlTc" style="font-variant-numeric:tabular-nums;color:var(--gold)">00:00:00:00 / 00:00:39:00</span>
       </div>
     </div>
   </div>
@@ -1196,12 +1215,12 @@ select.input option{background:#16130e;color:var(--ivory)}
         <div class="eyebrow" data-reveal>Selected work</div>
         <h2 class="h2 split-words" data-reveal style="margin-top:22px">Work that<br><em>moves people.</em></h2>
       </div>
-      <p class="lead" data-reveal>Watch my latest edit, then hover a website to scroll the real page. Click anything for the full view.</p>
+      <p class="lead" data-reveal>Watch my latest motion graphics video, then explore the websites I built. Open any project for the full view.</p>
     </div>
 
     <div class="reels" id="reels" hidden>
       <div class="reels-head">
-        <span class="case-tag">Video edits · By Gergis Motion</span>
+        <span class="case-tag">Featured video · By Gergis Motion</span>
         <div class="reels-nav" id="reelsNav">
           <button type="button" id="reelsPrev" aria-label="Previous videos"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M10 3L5 8l5 5"/></svg></button>
           <button type="button" id="reelsNext" aria-label="Next videos"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 3l5 5-5 5"/></svg></button>
@@ -1378,8 +1397,8 @@ select.input option{background:#16130e;color:var(--ivory)}
       <h2 class="h2 split-words" data-reveal>Tell me what<br>you <em>need.</em></h2>
       <p data-reveal>Fill in the brief and it comes straight to my inbox. The more detail you share, the more precise my proposal will be.</p>
       <div class="direct" data-reveal>
-        <a href="#" class="js-wa" target="_blank" rel="noopener"><small>Phone / WhatsApp</small><b class="js-phone"></b></a>
-        <a href="#" class="js-mailto"><small>Email</small><b class="js-email"></b></a>
+        <a href="https://wa.me/201222599826?text=Hi%20Gergis%2C%20I%27d%20like%20to%20talk%20about%20a%20project." class="js-wa" target="_blank" rel="noopener"><small>Phone / WhatsApp</small><b class="js-phone">+20 122 259 9826</b></a>
+        <a href="mailto:gergiseditor@gmail.com?subject=New%20project%20for%20Gergis%20Motion" class="js-mailto"><small>Email</small><b class="js-email">gergiseditor@gmail.com</b></a>
         <a href="https://www.instagram.com/gergis.motion/" target="_blank" rel="noopener"><small>Instagram</small><b>@gergis.motion</b></a>
         <a href="https://www.tiktok.com/@gergis.motion" target="_blank" rel="noopener"><small>TikTok</small><b>@gergis.motion</b></a>
         <div><small>Status</small><b><span class="status">Accepting new projects</span></b></div>
@@ -1465,7 +1484,7 @@ select.input option{background:#16130e;color:var(--ivory)}
       <div class="hp" aria-hidden="true"><label>Leave empty<input type="text" name="_honey" tabindex="-1" autocomplete="off"></label></div>
 
       <div class="form-foot">
-        <p>Your details go only to Gergis Motion and are never shared. Prefer chatting? <a class="js-wa gold" href="#" target="_blank" rel="noopener">Message me on WhatsApp</a>.</p>
+        <p>Your details go only to Gergis Motion and are never shared. Prefer chatting? <a class="js-wa gold" href="https://wa.me/201222599826?text=Hi%20Gergis%2C%20I%27d%20like%20to%20talk%20about%20a%20project." target="_blank" rel="noopener">Message me on WhatsApp</a>.</p>
         <button type="submit" class="btn btn-gold" id="submitBtn">Send brief
           <svg class="arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 8h12M9 3l5 5-5 5"/></svg>
           <span class="spin"></span>
@@ -1495,7 +1514,7 @@ select.input option{background:#16130e;color:var(--ivory)}
       </div>
       <div><h6>Studio</h6><ul><li><a href="#work">Work</a></li><li><a href="#services">Services</a></li><li><a href="#process">Process</a></li><li><a href="#about">About</a></li></ul></div>
       <div><h6>Services</h6><ul><li><a href="#services">Video Editing</a></li><li><a href="#services">Motion Graphics</a></li><li><a href="#services">Websites</a></li><li><a href="#packages">Packages</a></li></ul></div>
-      <div><h6>Connect</h6><ul id="socialList"><li><a href="#" class="js-wa" target="_blank" rel="noopener">WhatsApp</a></li><li><a href="#" class="js-mailto">Email</a></li></ul></div>
+      <div><h6>Connect</h6><ul id="socialList"><li><a href="https://wa.me/201222599826?text=Hi%20Gergis%2C%20I%27d%20like%20to%20talk%20about%20a%20project." class="js-wa" target="_blank" rel="noopener">WhatsApp</a></li><li><a href="mailto:gergiseditor@gmail.com?subject=New%20project%20for%20Gergis%20Motion" class="js-mailto">Email</a></li></ul></div>
     </div>
     <div class="footer-bottom">
       <span>© <span id="year"></span> Gergis Motion · Gergis Shawky. All rights reserved.</span>
@@ -1522,7 +1541,7 @@ select.input option{background:#16130e;color:var(--ivory)}
   </div>
 </div>
 
-<a href="#" class="wa-float js-wa" target="_blank" rel="noopener" aria-label="Chat with Gergis on WhatsApp">
+<a href="https://wa.me/201222599826?text=Hi%20Gergis%2C%20I%27d%20like%20to%20talk%20about%20a%20project." class="wa-float js-wa" target="_blank" rel="noopener" aria-label="Chat with Gergis on WhatsApp">
   <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.8-.9-2-1s-.5-.1-.7.1-.8 1-.9 1.2-.3.2-.6.1a8.2 8.2 0 0 1-4-3.5c-.3-.5.3-.5.9-1.6.1-.2 0-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6a1.2 1.2 0 0 0-.8.4 3.5 3.5 0 0 0-1.1 2.6 6 6 0 0 0 1.3 3.2 13.8 13.8 0 0 0 5.3 4.7c2 .8 2.7.9 3.7.8a3.1 3.1 0 0 0 2-1.4 2.5 2.5 0 0 0 .2-1.4c-.1-.2-.3-.3-.6-.4zM12 21.8a9.8 9.8 0 0 1-5-1.4l-.4-.2-3.7 1 1-3.6-.2-.4A9.8 9.8 0 1 1 12 21.8zM12 0a12 12 0 0 0-10.3 18l-1.7 6 6.2-1.6A12 12 0 1 0 12 0z"/></svg>
 </a>
 <div class="toast" id="toast" role="status"></div>
@@ -1553,10 +1572,10 @@ const CONFIG = {
      { title:"Brand promo", tag:"TikTok", link:"https://www.tiktok.com/@gergis.motion/video/1234567890123456789" },
    Links from TikTok, Instagram Reels and YouTube Shorts all work.                          */
 const VIDEOS = [
-  { title:"BMW Sunset Drift", tag:"Edit + Motion graphics", ratio:"16:9",
-    src:"videos/bmw-drift.mp4", preview:"videos/bmw-drift-preview.mp4", poster:"videos/bmw-drift-poster.webp",
-    desc:"A drift edit cut to the beat: slow-motion speed ramps, a warm sunset grade and animated titles that hit with every slide.",
-    meta:[["Format","16:9 · 60 fps"],["Length","36 seconds"],["Work","Edit, speed ramps, color, titles"]] }
+  { title:"El Shams Motion Graphics", tag:"Motion graphics", ratio:"16:9",
+    src:"videos/elshams-motion.mp4", preview:"videos/elshams-motion-preview.mp4", poster:"videos/elshams-motion-poster.webp",
+    desc:"A 39-second motion graphics video for El Shams: an animated logo reveal, a counter for 45 years of production, cards for dyeing, printing and finishing, capacity stats, the six production stages and ISO badges, ending on elshams.org.",
+    meta:[["Format","16:9 · 1080p · 30 fps"],["Length","39 seconds"],["Work","Motion design, animation, edit"]] }
 ];
 
 /* PORTFOLIO: your projects.
@@ -1809,6 +1828,7 @@ const PROJECTS = [
   function countUp(el){
     if (el.dataset.done) return; el.dataset.done = 1;
     const target = +el.dataset.count, s = performance.now(), d = reduce ? 1 : 1800;
+    el.textContent = reduce ? target : 0;
     const step = now => { const k = Math.min(1, (now - s) / d), e = 1 - Math.pow(1-k, 4); el.textContent = Math.round(target * e); if (k < 1) requestAnimationFrame(step); };
     requestAnimationFrame(step);
   }
@@ -1878,7 +1898,7 @@ const PROJECTS = [
           ${v.src ? `<video src="${v.preview || v.src}" ${v.poster ? `poster="${v.poster}"` : ""} muted loop playsinline preload="metadata" aria-hidden="true"></video>` : (v.poster ? `<img src="${v.poster}" alt="" loading="lazy">` : "")}
           ${v.tag ? `<span class="card-badge">${v.tag}</span>` : ""}
           <div class="rw-info">
-            <div><h3>${v.title}</h3>${v.desc ? `<p>${v.desc}</p>` : ""}</div>
+            <div><h3>${v.title}</h3></div>
             <span class="rw-play"><i>${playIcon}</i>Watch with sound</span>
           </div>
         </div>
@@ -1968,8 +1988,8 @@ const PROJECTS = [
     if (e.key === "Escape") { if (modal.classList.contains("open")) closeModal(); if (document.body.classList.contains("menu-open")) setMenu(false); }
   });
 
-  /* ---- NLE timeline: the playhead follows the real BMW edit ---- */
-  const DUR = 36, tl = $("#timeline"), ph = $("#playhead"), ruler = $("#ruler"), mon = $("#monVideo");
+  /* ---- NLE timeline: the playhead follows the real El Shams video ---- */
+  const DUR = 39, tl = $("#timeline"), ph = $("#playhead"), ruler = $("#ruler"), mon = $("#monVideo");
   for (let s = 0; s < DUR; s += 6) ruler.insertAdjacentHTML("beforeend", `<span style="left:${s/DUR*100}%">${tc(s).slice(3,8)}</span>`);
   const monTc = $("#monTc"), tlTc = $("#tlTc");
   let pos = 0, playing = !reduce, dragging = false, nleVisible = false, lastT = 0, vidOK = false;
@@ -1991,7 +2011,7 @@ const PROJECTS = [
     const laneW = tl.clientWidth - laneLeft;
     ph.style.left = (laneLeft + pos * laneW) + "px";
     const sec = pos * DUR;
-    monTc.textContent = tc(sec, 60); tlTc.textContent = `${tc(sec, 60)} / ${tc(DUR, 60)}`;
+    monTc.textContent = tc(sec); tlTc.textContent = `${tc(sec)} / ${tc(DUR)}`;
   };
   const loopTl = now => {
     requestAnimationFrame(loopTl);
